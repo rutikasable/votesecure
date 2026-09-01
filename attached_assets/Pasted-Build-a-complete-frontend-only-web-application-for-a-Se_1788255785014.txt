@@ -1,0 +1,685 @@
+Build a complete frontend-only web application for a **Secure Online Voting System** using **React + Vite + JavaScript**.
+
+This is a college-level full-stack mini project. For now, build ONLY the frontend with dummy/mock data. Do not create or implement a backend, database, authentication server, Aadhaar verification, biometric verification, or real voting infrastructure yet. The frontend must be structured so that a Node.js + Express + MySQL backend can be connected later through REST APIs.
+
+## PROJECT GOAL
+
+Create a professional, modern, trustworthy online voting platform where voters can:
+
+* Register and log in
+* View available elections
+* View candidate information
+* Cast one vote in an active election
+* Receive a voting confirmation
+* See their voting status
+
+Administrators can:
+
+* Log in
+* View an admin dashboard
+* Create and manage elections
+* Manage candidates
+* View registered voters
+* View voting statistics
+* View election results
+
+The design should feel like a modern civic/government digital service, but NOT copy any specific government website.
+
+## DESIGN STYLE
+
+Use a clean, professional, trustworthy visual language.
+
+Design direction:
+
+* Modern government/civic technology platform
+* Minimal and spacious
+* Professional typography
+* Excellent visual hierarchy
+* Subtle rounded corners
+* Clean cards
+* Soft shadows
+* Accessible contrast
+* Responsive design
+* Desktop-first but fully responsive on tablet and mobile
+* Avoid excessive gradients
+* Avoid excessive animations
+* Avoid a flashy startup/SaaS aesthetic
+* Avoid overly colorful UI
+* Avoid childish design
+
+Use a restrained color palette based around:
+
+* Deep navy / dark blue
+* White
+* Light gray
+* Subtle blue accents
+* Green only for success states
+* Red only for errors/warnings
+
+The interface should communicate:
+**Trust + Security + Simplicity + Transparency**
+
+## GLOBAL UI
+
+Create a consistent layout throughout the application.
+
+Header:
+
+* Logo/icon
+* "VoteSecure" as the product name
+* Navigation links where appropriate
+* Login/Register buttons for public pages
+* User profile/logout for authenticated pages
+
+Footer:
+
+* About
+* Privacy
+* Security
+* Contact
+* Copyright
+* "Academic Project" label
+
+Use reusable components:
+
+* Navbar
+* Footer
+* Button
+* Input
+* Select
+* Modal
+* Card
+* Badge
+* Alert
+* Table
+* Sidebar
+* StatCard
+* CandidateCard
+* ElectionCard
+* LoadingState
+* EmptyState
+* ConfirmationModal
+
+## PAGES TO BUILD
+
+### 1. LANDING PAGE
+
+Route:
+/
+
+Create a polished landing page.
+
+Hero section:
+Title:
+"Your Vote. Your Voice."
+
+Subtitle:
+"A simple and secure digital voting experience designed to make elections accessible, transparent, and easy to participate in."
+
+Primary CTA:
+"Get Started"
+
+Secondary CTA:
+"View Elections"
+
+Add a subtle illustration or abstract civic/election visual.
+
+Below the hero, show 3–4 feature cards:
+
+* Secure Authentication
+* One Person, One Vote
+* Transparent Results
+* Simple Voting Experience
+
+Add a "How It Works" section:
+
+1. Register
+2. Verify your account
+3. Choose an election
+4. Cast your vote
+5. Receive confirmation
+
+Add a small security/trust section explaining that the system prevents duplicate voting and provides transparent election statistics.
+
+Do NOT claim military-grade, government-certified, blockchain-secured, or legally certified security.
+
+### 2. LOGIN PAGE
+
+Route:
+/login
+
+Centered professional login card.
+
+Fields:
+
+* Email
+* Password
+
+Options:
+
+* Remember me
+* Forgot password
+
+Buttons:
+
+* Login
+* Create account
+
+Also include:
+"Login as Admin" as a separate subtle option.
+
+Use mock authentication only for now.
+
+### 3. REGISTER PAGE
+
+Route:
+/register
+
+Fields:
+
+* Full Name
+* Email
+* Mobile Number
+* Password
+* Confirm Password
+
+Add password strength indicator.
+
+Checkbox:
+"I agree to the Terms and Privacy Policy."
+
+Button:
+"Create Account"
+
+Show validation states.
+
+### 4. VOTER DASHBOARD
+
+Route:
+/voter/dashboard
+
+Create a clean dashboard.
+
+Top:
+"Welcome back, [User Name]"
+
+Summary cards:
+
+* Active Elections
+* Upcoming Elections
+* Elections Participated
+* Voting Status
+
+Main section:
+"Active Elections"
+
+Display election cards with:
+
+* Election title
+* Description
+* Start date
+* End date
+* Status badge
+* Number of candidates
+* "View Election" button
+
+Add a "Your Activity" section showing:
+
+* Elections participated in
+* Date voted
+* Status
+
+Do NOT show which candidate the voter selected after voting.
+
+### 5. ELECTIONS PAGE
+
+Route:
+/voter/elections
+
+Show all elections.
+
+Add:
+
+* Search
+* Status filter
+* Sort dropdown
+
+Election cards should show:
+
+* Election name
+* Description
+* Dates
+* Status
+* Candidate count
+* Voting status
+* Action button
+
+Statuses:
+
+* Upcoming
+* Active
+* Ended
+
+### 6. ELECTION DETAILS PAGE
+
+Route:
+/voter/elections/:id
+
+Show:
+
+Election title
+Description
+Start/end dates
+Election status
+
+Candidate list using attractive candidate cards.
+
+Each candidate card:
+
+* Candidate photo placeholder
+* Candidate name
+* Party/group
+* Short description
+* "View Profile"
+
+At the bottom for an active election:
+"Proceed to Vote"
+
+### 7. VOTING PAGE
+
+Route:
+/voter/vote/:id
+
+This should be the most carefully designed voter page.
+
+Header:
+"Cast Your Vote"
+
+Show election name and instructions:
+
+"Select ONE candidate. Your vote cannot be changed after submission."
+
+Display candidates with radio-button selection.
+
+Only ONE candidate can be selected.
+
+Before submission:
+"Review Your Selection"
+
+Then show a confirmation modal:
+
+"Are you sure you want to submit your vote?"
+
+"Once submitted, your vote cannot be changed."
+
+Buttons:
+"Cancel"
+"Confirm Vote"
+
+After confirmation, show a successful voting state.
+
+Do not display the selected candidate anywhere after the vote is submitted.
+
+### 8. VOTE CONFIRMATION PAGE
+
+Route:
+/voter/confirmation
+
+Show a professional success screen:
+
+Large check icon.
+
+"Your Vote Has Been Recorded"
+
+Show:
+
+* Election name
+* Date/time
+* Anonymous ballot reference such as VS-2026-8F3K21
+
+Explain:
+"Your ballot has been successfully recorded."
+
+Do NOT reveal the selected candidate.
+
+Button:
+"Return to Dashboard"
+
+### 9. ADMIN LOGIN
+
+Route:
+/admin/login
+
+Separate professional admin login interface.
+
+Show:
+"Election Administration"
+
+Fields:
+
+* Email
+* Password
+
+Button:
+"Sign In"
+
+Use mock authentication.
+
+### 10. ADMIN DASHBOARD
+
+Route:
+/admin/dashboard
+
+Create a professional data dashboard.
+
+Top statistics:
+
+* Total Registered Voters
+* Total Elections
+* Active Elections
+* Total Votes Cast
+
+Add a turnout card:
+
+"Current Turnout"
+65.4%
+
+Show progress bar.
+
+Add charts using Recharts:
+
+1. Votes by Candidate
+2. Voter Turnout
+3. Votes Over Time
+
+Use realistic mock data.
+
+Add:
+"Recent Activity"
+
+Examples:
+
+* Election created
+* Candidate added
+* Voting activity
+* Election ended
+
+### 11. ADMIN — ELECTION MANAGEMENT
+
+Route:
+/admin/elections
+
+Show a table:
+
+Election
+Status
+Start Date
+End Date
+Candidates
+Votes
+Actions
+
+Actions:
+
+* View
+* Edit
+* Delete
+
+Add:
+"+ Create Election"
+
+Create Election page/modal with:
+
+* Election name
+* Description
+* Start date
+* End date
+* Status
+
+### 12. ADMIN — CANDIDATE MANAGEMENT
+
+Route:
+/admin/candidates
+
+Show candidates in a table/card layout.
+
+Information:
+
+* Photo
+* Name
+* Party/group
+* Election
+* Status
+* Actions
+
+Actions:
+
+* Add
+* Edit
+* Delete
+
+Add Candidate form:
+
+* Name
+* Party/group
+* Description
+* Photo upload UI
+* Election selection
+
+For now photo upload can be frontend-only/mock.
+
+### 13. ADMIN — VOTER MANAGEMENT
+
+Route:
+/admin/voters
+
+Create a searchable voter table.
+
+Columns:
+
+* Name
+* Email
+* Mobile
+* Registration date
+* Voting status
+
+Voting status:
+
+* Voted
+* Not Voted
+
+IMPORTANT:
+Do not show which candidate an individual voter voted for.
+
+### 14. ADMIN — RESULTS
+
+Route:
+/admin/results
+
+Create a results page with:
+
+Election selector.
+
+Show:
+
+* Total registered voters
+* Total votes
+* Turnout
+* Candidate vote counts
+* Vote percentages
+
+Charts:
+
+* Bar chart
+* Donut/pie chart
+
+Clearly distinguish:
+
+"Live Election Statistics"
+
+from
+
+"Final Results"
+
+For an ACTIVE election, display turnout/system statistics but do not prominently display candidate-by-candidate live results.
+
+For an ENDED election, display final candidate results.
+
+## NAVIGATION
+
+Use React Router.
+
+Routes:
+
+/
+/login
+/register
+
+/voter/dashboard
+/voter/elections
+/voter/elections/:id
+/voter/vote/:id
+/voter/confirmation
+
+/admin/login
+/admin/dashboard
+/admin/elections
+/admin/elections/create
+/admin/candidates
+/admin/voters
+/admin/results
+
+Create protected-route placeholders for voter and admin areas. They can use mock authentication for now.
+
+## MOCK DATA
+
+Create realistic mock data files separately from UI components.
+
+Example elections:
+
+1. Student Council Election 2026
+2. Technology Club Election 2026
+3. Cultural Committee Election 2026
+
+Create 4–6 candidates per election.
+
+Create at least 20 mock voters.
+
+Create realistic vote statistics for charts.
+
+Keep mock data easy to replace with API responses later.
+
+## CODE STRUCTURE
+
+Use a clean scalable structure:
+
+src/
+├── assets/
+├── components/
+│   ├── common/
+│   ├── voter/
+│   └── admin/
+├── layouts/
+│   ├── PublicLayout
+│   ├── VoterLayout
+│   └── AdminLayout
+├── pages/
+│   ├── public/
+│   ├── voter/
+│   └── admin/
+├── data/
+│   └── mockData.js
+├── routes/
+├── services/
+│   └── api.js
+├── hooks/
+├── utils/
+├── App.jsx
+├── main.jsx
+└── index.css
+
+Keep API-related functions inside services/api.js so that they can later be replaced with calls to the Node.js backend.
+
+## IMPORTANT FRONTEND ARCHITECTURE
+
+Do NOT hardcode everything inside page components.
+
+Use reusable components and mock data.
+
+Keep business logic separate from presentation where practical.
+
+Use environment variables for future API URL configuration.
+
+Prepare the frontend for a future backend such as:
+
+http://localhost:5000/api
+
+Do not implement the backend now.
+
+## UX REQUIREMENTS
+
+Include:
+
+* Loading states
+* Empty states
+* Error states
+* Form validation
+* Success notifications
+* Confirmation dialogs
+* Disabled states
+* Hover states
+* Responsive navigation
+* Mobile-friendly tables
+* Accessible labels
+* Keyboard-friendly controls
+* Clear focus states
+
+For destructive actions like deleting an election or candidate, always show a confirmation dialog.
+
+## VISUAL QUALITY
+
+Make the application look like a polished portfolio project.
+
+Do NOT make it look like a default Vite application.
+
+Avoid:
+
+* Generic Bootstrap-looking layouts
+* Huge unnecessary gradients
+* Excessive animations
+* Excessive glassmorphism
+* Emoji-based UI
+* Random decorative elements
+
+Use icons from a suitable React icon library such as Lucide.
+
+Use subtle transitions for buttons, cards, modals, and navigation.
+
+## FINAL REQUIREMENT
+
+First make the complete frontend functional using mock data.
+
+All navigation should work.
+
+All pages should be accessible.
+
+Voting should work as a frontend simulation:
+
+* Select candidate
+* Confirm
+* Show success
+* Mark voter as having voted in mock state
+* Prevent another vote in that election during the session
+
+Admin CRUD operations can update mock frontend state for now.
+
+Do not build or connect any backend.
+
+After completing the implementation, provide a concise summary of:
+
+1. Pages created
+2. Components created
+3. Libraries installed
+4. Folder structure
+5. How to run the project
+6. Where the future backend API should be connected
