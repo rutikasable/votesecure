@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background)); --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border)); --color-input: hsl(var(--input)); --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card)); --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary)); --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary)); --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted)); --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent)); --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive)); --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-popover: hsl(var(--popover)); --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-chart-1: hsl(var(--chart-1)); --color-chart-2: hsl(var(--chart-2)); --color-chart-3: hsl(var(--chart-3));
+  --font-sans: var(--app-font-sans); --font-serif: var(--app-font-serif); --font-mono: var(--app-font-mono);
+  --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --background: 210 32% 97%; --foreground: 215 43% 16%; --border: 214 22% 88%;
+  --card: 0 0% 100%; --card-foreground: 215 43% 16%; --card-border: 214 24% 90%;
+  --popover: 0 0% 100%; --popover-foreground: 215 43% 16%;
+  --primary: 218 67% 29%; --primary-foreground: 0 0% 100%;
+  --secondary: 210 25% 93%; --secondary-foreground: 218 58% 27%;
+  --muted: 211 24% 93%; --muted-foreground: 215 18% 45%;
+  --accent: 200 76% 93%; --accent-foreground: 210 74% 27%;
+  --destructive: 0 63% 43%; --destructive-foreground: 0 0% 100%;
+  --input: 214 24% 82%; --ring: 199 72% 43%;
+  --chart-1: 199 72% 43%; --chart-2: 158 47% 39%; --chart-3: 218 67% 29%;
+  --app-font-sans: 'DM Sans', sans-serif; --app-font-serif: 'Source Serif 4', Georgia, serif; --app-font-mono: ui-monospace, monospace;
+  --radius: .6rem; --shadow-sm: 0 2px 9px rgba(20,44,74,.06); --shadow-md: 0 8px 24px rgba(20,44,74,.09);
+  --sidebar: 218 67% 29%; --sidebar-foreground: 210 32% 97%; --sidebar-border: 218 48% 39%; --sidebar-primary: 194 82% 62%; --sidebar-accent: 218 49% 36%;
+}
+.dark { --background: 216 35% 9%; --foreground: 210 30% 94%; --card: 215 31% 13%; --card-foreground: 210 30% 94%; --border: 215 23% 25%; --primary: 199 72% 55%; --primary-foreground: 216 35% 9%; --secondary: 215 25% 20%; --secondary-foreground: 210 30% 94%; --muted: 215 25% 20%; --muted-foreground: 214 16% 68%; --accent: 210 50% 22%; --accent-foreground: 198 76% 79%; --input: 215 23% 31%; --ring: 199 72% 55%; --popover: 215 31% 13%; --popover-foreground: 210 30% 94%; }
+
+@layer base { * { @apply border-border; } body { @apply font-sans antialiased bg-background text-foreground; margin: 0; } button, a, input, select, textarea { font: inherit; } :focus-visible { outline: 3px solid hsl(var(--ring)); outline-offset: 2px; } }
+@layer utilities {
+  .font-display { font-family: var(--app-font-serif); }
+  .label-caps { letter-spacing: .11em; text-transform: uppercase; font-size: .7rem; font-weight: 700; }
+  .page-grid { background-image: linear-gradient(rgba(37,76,113,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(37,76,113,.04) 1px, transparent 1px); background-size: 28px 28px; }
+  .animate-enter { animation: enter .45s ease both; }
+  .animate-enter-delay { animation: enter .45s .12s ease both; }
+}
+@keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

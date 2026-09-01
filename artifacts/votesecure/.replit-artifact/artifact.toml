@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "VoteSecure"
+description = "A frontend-only civic voting platform prototype with public, voter, and election administration experiences powered by realistic mock data."
+version = "1.0.0"
+id = "artifacts/votesecure"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19139
+
+[services.development]
+run = "pnpm --filter @workspace/votesecure run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/votesecure", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/votesecure/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19139"
+BASE_PATH = "/"
