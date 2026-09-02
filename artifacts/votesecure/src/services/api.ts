@@ -3,6 +3,11 @@
  * Centralized client for communicating with the VoteSecure Express backend.
  */
 
+const ensureApiSuffix = (url: string): string => {
+  const trimmed = url.replace(/\/$/, '');
+  return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+};
+
 // Base API URL configured via Vite environment variable VITE_API_URL or current host
 const getApiBaseUrl = (): string => {
   const envUrl = import.meta.env.VITE_API_URL as string | undefined;
@@ -15,7 +20,7 @@ const getApiBaseUrl = (): string => {
       );
       // If envUrl is explicitly pointing to an external production host (e.g. Railway, Render, etc.), always use it!
       if (parsed.hostname !== 'localhost' && parsed.hostname !== '127.0.0.1') {
-        return envUrl.replace(/\/$/, '');
+        return ensureApiSuffix(envUrl);
       }
       // If envUrl is localhost, but accessed from a LAN IP in dev (e.g. 192.100.30.203), adapt host
       if (
@@ -25,11 +30,11 @@ const getApiBaseUrl = (): string => {
         window.location.hostname !== '127.0.0.1'
       ) {
         parsed.hostname = window.location.hostname;
-        return parsed.toString().replace(/\/$/, '');
+        return ensureApiSuffix(parsed.toString());
       }
-      return envUrl.replace(/\/$/, '');
+      return ensureApiSuffix(envUrl);
     } catch {
-      return envUrl.replace(/\/$/, '');
+      return ensureApiSuffix(envUrl);
     }
   }
 
