@@ -7,28 +7,43 @@
 const getApiBaseUrl = (): string => {
   const envUrl = import.meta.env.VITE_API_URL as string | undefined;
 
-  // When accessed from a LAN IP (e.g. 192.100.30.203) or custom host, adapt localhost URL to current hostname
+  if (envUrl && envUrl.trim() !== '') {
+    try {
+      const parsed = new URL(
+        envUrl,
+        typeof window !== 'undefined' ? window.location.origin : 'http://localhost'
+      );
+      // If envUrl is explicitly pointing to an external production host (e.g. Railway, Render, etc.), always use it!
+      if (parsed.hostname !== 'localhost' && parsed.hostname !== '127.0.0.1') {
+        return envUrl.replace(/\/$/, '');
+      }
+      // If envUrl is localhost, but accessed from a LAN IP in dev (e.g. 192.100.30.203), adapt host
+      if (
+        typeof window !== 'undefined' &&
+        window.location.hostname &&
+        window.location.hostname !== 'localhost' &&
+        window.location.hostname !== '127.0.0.1'
+      ) {
+        parsed.hostname = window.location.hostname;
+        return parsed.toString().replace(/\/$/, '');
+      }
+      return envUrl.replace(/\/$/, '');
+    } catch {
+      return envUrl.replace(/\/$/, '');
+    }
+  }
+
+  // Fallback if no VITE_API_URL is configured
   if (
     typeof window !== 'undefined' &&
     window.location.hostname &&
     window.location.hostname !== 'localhost' &&
     window.location.hostname !== '127.0.0.1'
   ) {
-    if (envUrl) {
-      try {
-        const parsed = new URL(envUrl, window.location.origin);
-        if (parsed.hostname === 'localhost' || parsed.hostname === '127.0.0.1') {
-          parsed.hostname = window.location.hostname;
-          return parsed.toString().replace(/\/$/, '');
-        }
-      } catch {
-        // Fallback to current host on port 5000
-      }
-    }
     return `${window.location.protocol}//${window.location.hostname}:5000/api`;
   }
 
-  return envUrl || 'http://localhost:5000/api';
+  return 'http://localhost:5000/api';
 };
 
 export const API_BASE_URL: string = getApiBaseUrl();
