@@ -41,7 +41,11 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on http://localhost:${PORT} and http://0.0.0.0:${PORT}`);
-  console.log(`Connected to Supabase: https://avwdbgiiadsagoftapfa.supabase.co`);
-});
+if (require.main === module) {
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on http://localhost:${PORT} and http://0.0.0.0:${PORT}`);
+    console.log(`Connected to Supabase: https://avwdbgiiadsagoftapfa.supabase.co`);
+  });
+}
+
+module.exports = app;

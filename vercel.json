@@ -1,0 +1,27 @@
+{
+  "services": {
+    "frontend": {
+      "root": "artifacts/votesecure",
+      "framework": "vite"
+    },
+    "backend": {
+      "root": "artifacts/votesecure/backend"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api(/.*)?",
+      "destination": {
+        "type": "service",
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "frontend"
+      }
+    }
+  ]
+}
