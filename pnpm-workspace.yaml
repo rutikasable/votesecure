@@ -36,6 +36,7 @@ minimumReleaseAgeExclude:
 
 packages:
   - artifacts/*
+  - artifacts/votesecure/backend
   - lib/*
   - lib/integrations/*
   - scripts
